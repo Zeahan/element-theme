@@ -3,6 +3,7 @@ var series = require('run-sequence').use(gulp)
 var task = require('./lib/task')
 var extractor = require('./lib/extract-files')
 var config = require('./lib/config')
+var watch = require('gulp-watch')
 
 var build = function (opts) {
   return function () {
@@ -28,9 +29,12 @@ exports.extract = function ({all, source, targetDirectory, sourceDir}) {
 }
 
 exports.watch = function (opts) {
-  gulp.task('build', build(opts))
+  // gulp.task('build', build(opts))
   exports.run(opts)
-  gulp.watch(`${opts.config || config.config}/*.scss`, ['build'])
+  // gulp.watch(`${opts.config || config.config}/*.scss`, ['build'])
+  watch(`${opts.config || config.config}/*.scss`, function () {
+    exports.run(opts)
+  })
 }
 
 exports.run = function (opts, cb) {
