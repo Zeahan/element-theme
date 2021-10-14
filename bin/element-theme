@@ -3,6 +3,7 @@
 var program = require('commander')
 var main = require('../index.js')
 var check = require('../lib/gen-vars').check
+var varFile = require('../lib/config').varFile
 var config = {}
 
 console.log()
@@ -10,9 +11,18 @@ process.on('exit', function () {
   console.log()
 })
 
+const extractConfig = {
+  all: false, // 提取所有主题文件
+  source: null, // 要提取的源文件的相对路径
+  targetDirectory: null // 提取到...
+}
+
 program
   .version(require('../package.json').version)
-  .option('-i --init [filePath]', 'init variables file')
+  .option('-i --init', 'init variables file', function () {extractConfig.source = varFile})
+  .option('-e --extract [sourcePath]', 'extract source file(s)', function (source) {extractConfig.source = source})
+  .option('-a --extractAll', 'extract all source files', function () {extractConfig.all = true})
+  .option('-t --targetDirectory <target>', 'set target directory', function (target) {extractConfig.targetDirectory = target})
   .option('-w --watch', 'watch variable changes then build')
   .option('-o --out [outPath]', 'output path', function (out) {config.out = out})
   .option('-m --minimize', 'compressed file', function (minimize) {config.minimize = minimize !== false})
@@ -22,7 +32,10 @@ program
 
 check()
 
-if (program.init) {
-  return main.init(program.init)
+if (program.init || program.extract) {
+  return main.extract(extractConfig);
+} else if (program.extractAll || program.targetDirectory) {
+  return console.log('please use \'-a\' or \'-t\' with \'-e --extract [sourcePath]\'');
 }
+
 program.watch ? main.watch(config) : main.run(config)

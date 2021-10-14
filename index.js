@@ -1,7 +1,7 @@
 var gulp = require('gulp')
 var series = require('run-sequence').use(gulp)
 var task = require('./lib/task')
-var vars = require('./lib/gen-vars')
+var extractor = require('./lib/extract-files')
 var config = require('./lib/config')
 
 var build = function (opts) {
@@ -19,6 +19,17 @@ var fonts = function (opts) {
 exports.init = function (filePath) {
   filePath = {}.toString.call(filePath) === '[object String]' ? filePath : ''
   vars.init(filePath)
+}
+
+exports.extract = function ({all, source, targetDirectory}) {
+  if (all) {
+    // TODO
+    return console.log('all');
+  }
+  if (!source) {
+    return console.log('please specify a source file or use \'-a\' option to extract all source files')
+  }
+  extractor.extract(source, targetDirectory);
 }
 
 exports.watch = function (opts) {
