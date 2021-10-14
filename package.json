@@ -1,7 +1,7 @@
 {
-  "name": "element-theme",
-  "version": "2.0.1",
-  "description": "Theme generator cli tool for Element",
+  "name": "enhanced-element-theme",
+  "version": "1.0.0",
+  "description": "Enhanced theme generator cli tool for Element(You can specify and edit any theme file instead of only the common vars)",
   "bin": {
     "element-theme": "./bin/element-theme",
     "et": "./bin/element-theme"
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ElementUI/element-theme.git"
+    "url": "git@github.com:Zeahan/element-theme.git"
   },
   "keywords": [
     "element-ui",
@@ -32,10 +32,7 @@
     "theme",
     "cli"
   ],
-  "bugs": {
-    "url": "https://github.com/ElementUI/element-theme/issues"
-  },
-  "author": "qingwei-li <cinwell.li@gmail.com> (https://github.com/QingWei-Li)",
+  "author": "zihan-zhou <zihanz.goodluck@gmail.com>",
   "engines": {
     "node": ">=0.12.0"
   },
@@ -54,7 +51,7 @@
     "run-sequence": "^1.2.2"
   },
   "devDependencies": {
-    "element-theme-chalk": "^2.0.0-alpha.1",
+    "element-theme-chalk": "^2.15.6",
     "xo": "^0.17.0"
   }
 }
