@@ -16,15 +16,10 @@ var fonts = function (opts) {
   }
 }
 
-exports.init = function (filePath) {
-  filePath = {}.toString.call(filePath) === '[object String]' ? filePath : ''
-  vars.init(filePath)
-}
 
-exports.extract = function ({all, source, targetDirectory}) {
+exports.extract = function ({all, source, targetDirectory, sourceDir}) {
   if (all) {
-    // TODO
-    return console.log('all');
+    extractor.extractAll(targetDirectory, sourceDir);
   }
   if (!source) {
     return console.log('please specify a source file or use \'-a\' option to extract all source files')
