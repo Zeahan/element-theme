@@ -32,8 +32,8 @@ exports.watch = function (opts) {
   // gulp.task('build', build(opts))
   exports.run(opts)
   // gulp.watch(`${opts.config || config.config}/*.scss`, ['build'])
-  watch(`${opts.config || config.config}/*.scss`, function () {
-    exports.run(opts)
+  watch([`${opts.config || config.config}/*.scss`, `${opts.config || config.config}/index.json`], function () {
+    exports.run(opts);
   })
 }
 
