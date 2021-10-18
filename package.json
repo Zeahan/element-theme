@@ -1,6 +1,6 @@
 {
   "name": "enhanced-element-theme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "(forked from element-theme)Enhanced theme generator cli tool for Element(You can specify and edit any theme file instead of only the common vars)",
   "bin": {
     "element-theme": "./bin/element-theme",
